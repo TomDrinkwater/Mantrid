@@ -1,0 +1,408 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8753453C19F81BDD00676477 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8753453B19F81BDD00676477 /* AppDelegate.swift */; };
+		8753453E19F81BDD00676477 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8753453D19F81BDD00676477 /* Images.xcassets */; };
+		8753454119F81BDD00676477 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8753453F19F81BDD00676477 /* MainMenu.xib */; };
+		8753454D19F81BDD00676477 /* MantridTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8753454C19F81BDD00676477 /* MantridTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8753454719F81BDD00676477 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8753452E19F81BDC00676477 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8753453519F81BDD00676477;
+			remoteInfo = Mantrid;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		8753453619F81BDD00676477 /* Mantrid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mantrid.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8753453A19F81BDD00676477 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8753453B19F81BDD00676477 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		8753453D19F81BDD00676477 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		8753454019F81BDD00676477 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		8753454619F81BDD00676477 /* MantridTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MantridTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8753454B19F81BDD00676477 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8753454C19F81BDD00676477 /* MantridTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MantridTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8753453319F81BDD00676477 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8753454319F81BDD00676477 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8753452D19F81BDC00676477 = {
+			isa = PBXGroup;
+			children = (
+				8753453819F81BDD00676477 /* Mantrid */,
+				8753454919F81BDD00676477 /* MantridTests */,
+				8753453719F81BDD00676477 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		8753453719F81BDD00676477 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8753453619F81BDD00676477 /* Mantrid.app */,
+				8753454619F81BDD00676477 /* MantridTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8753453819F81BDD00676477 /* Mantrid */ = {
+			isa = PBXGroup;
+			children = (
+				8753453B19F81BDD00676477 /* AppDelegate.swift */,
+				8753453D19F81BDD00676477 /* Images.xcassets */,
+				8753453F19F81BDD00676477 /* MainMenu.xib */,
+				8753453919F81BDD00676477 /* Supporting Files */,
+			);
+			path = Mantrid;
+			sourceTree = "<group>";
+		};
+		8753453919F81BDD00676477 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8753453A19F81BDD00676477 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8753454919F81BDD00676477 /* MantridTests */ = {
+			isa = PBXGroup;
+			children = (
+				8753454C19F81BDD00676477 /* MantridTests.swift */,
+				8753454A19F81BDD00676477 /* Supporting Files */,
+			);
+			path = MantridTests;
+			sourceTree = "<group>";
+		};
+		8753454A19F81BDD00676477 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8753454B19F81BDD00676477 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8753453519F81BDD00676477 /* Mantrid */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8753455019F81BDD00676477 /* Build configuration list for PBXNativeTarget "Mantrid" */;
+			buildPhases = (
+				8753453219F81BDD00676477 /* Sources */,
+				8753453319F81BDD00676477 /* Frameworks */,
+				8753453419F81BDD00676477 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Mantrid;
+			productName = Mantrid;
+			productReference = 8753453619F81BDD00676477 /* Mantrid.app */;
+			productType = "com.apple.product-type.application";
+		};
+		8753454519F81BDD00676477 /* MantridTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8753455319F81BDD00676477 /* Build configuration list for PBXNativeTarget "MantridTests" */;
+			buildPhases = (
+				8753454219F81BDD00676477 /* Sources */,
+				8753454319F81BDD00676477 /* Frameworks */,
+				8753454419F81BDD00676477 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8753454819F81BDD00676477 /* PBXTargetDependency */,
+			);
+			name = MantridTests;
+			productName = MantridTests;
+			productReference = 8753454619F81BDD00676477 /* MantridTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8753452E19F81BDC00676477 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = puce;
+				TargetAttributes = {
+					8753453519F81BDD00676477 = {
+						CreatedOnToolsVersion = 6.1;
+					};
+					8753454519F81BDD00676477 = {
+						CreatedOnToolsVersion = 6.1;
+						TestTargetID = 8753453519F81BDD00676477;
+					};
+				};
+			};
+			buildConfigurationList = 8753453119F81BDC00676477 /* Build configuration list for PBXProject "Mantrid" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8753452D19F81BDC00676477;
+			productRefGroup = 8753453719F81BDD00676477 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8753453519F81BDD00676477 /* Mantrid */,
+				8753454519F81BDD00676477 /* MantridTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8753453419F81BDD00676477 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8753453E19F81BDD00676477 /* Images.xcassets in Resources */,
+				8753454119F81BDD00676477 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8753454419F81BDD00676477 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8753453219F81BDD00676477 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8753453C19F81BDD00676477 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8753454219F81BDD00676477 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8753454D19F81BDD00676477 /* MantridTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8753454819F81BDD00676477 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8753453519F81BDD00676477 /* Mantrid */;
+			targetProxy = 8753454719F81BDD00676477 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		8753453F19F81BDD00676477 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8753454019F81BDD00676477 /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		8753454E19F81BDD00676477 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		8753454F19F81BDD00676477 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		8753455119F81BDD00676477 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = Mantrid/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		8753455219F81BDD00676477 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = Mantrid/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		8753455419F81BDD00676477 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = MantridTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Mantrid.app/Contents/MacOS/Mantrid";
+			};
+			name = Debug;
+		};
+		8753455519F81BDD00676477 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = MantridTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Mantrid.app/Contents/MacOS/Mantrid";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8753453119F81BDC00676477 /* Build configuration list for PBXProject "Mantrid" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8753454E19F81BDD00676477 /* Debug */,
+				8753454F19F81BDD00676477 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8753455019F81BDD00676477 /* Build configuration list for PBXNativeTarget "Mantrid" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8753455119F81BDD00676477 /* Debug */,
+				8753455219F81BDD00676477 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		8753455319F81BDD00676477 /* Build configuration list for PBXNativeTarget "MantridTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8753455419F81BDD00676477 /* Debug */,
+				8753455519F81BDD00676477 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8753452E19F81BDC00676477 /* Project object */;
+}
