@@ -121,6 +121,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         thinMenu.selectItemAtIndex(myManta.userData.thin-1)
         multiChanMenu.selectItemAtIndex(myManta.userData.numMultiChannels-1)
+        myManta.userData.setLEDsArbitrary ? ledSetMenu.selectItemAtIndex(1) : ledSetMenu.selectItemAtIndex(0)
         
         myManta.userData.settingNotes = false//every load sets these back to false
         myManta.userData.settingLEDs = false
