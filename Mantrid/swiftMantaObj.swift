@@ -356,7 +356,7 @@ class swiftMantaObj : OcManta {
         if userData.ledModeState != UserData.LEDModeState.LedOff{
             for i in 0...47 {
                 self.setPADled(userData.arbLEDs[i], withValue:i)// colour then padnumber
-                println ("setting led for pad \(i)")
+                //println ("setting led for pad \(i)")
             }
         }
         if userData.ledModeState != UserData.LEDModeState.LedBoth {

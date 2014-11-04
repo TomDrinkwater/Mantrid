@@ -179,7 +179,7 @@ class UserData {
         
         if let noteLedsNS : AnyObject? = defaults.objectForKey("noteLedsNS") {
             var readArray : [String] = noteLedsNS! as [String]// convert to swift strings?
-            println("loaded noteLedsNS \(readArray)")
+            //println("loaded noteLedsNS \(readArray)")
             for i in 0...11 {
                 if let value  = sLEDState(rawValue: readArray[i]){//value will be optional. if user edits plist and misspells the tag it will fail
                     noteLeds[i] = value // the if binding means don't have to unwrap with !
@@ -195,7 +195,7 @@ class UserData {
         
         if let arbLEDsNS : AnyObject? = defaults.objectForKey("arbLEDsNS") {
             var readArray : [String] = arbLEDsNS! as [String]// convert to swift strings?
-            println("loaded arbLEDsNS \(readArray)")
+            //println("loaded arbLEDsNS \(readArray)")
             for i in 0...47 {
                 if let value  = sLEDState(rawValue: readArray[i]){//value will be optional. if user edits plist and misspells the tag it will fail
                     arbLEDs[i] = value // the if binding means don't have to unwrap with !
