@@ -39,6 +39,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @IBOutlet weak var baseChannelMenu: NSPopUpButton!
     
+    @IBOutlet weak var ledLabel: NSTextField!
     
     @IBAction func baseChannelMenu(sender: NSPopUpButton) {
         myManta.userData.baseChannel = sender.indexOfSelectedItem
@@ -62,33 +63,41 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBAction func layoutTypeMenu(sender: NSPopUpButton) {
         var item = sender.indexOfSelectedItem
         if item == 1 {
-            setArb()
+            setArbNoteslayout()
         } else {
-            setIso()
+            setIsoNotesLayout()
         }
     }
     
-    func setArb() {
+    func setArbNoteslayout() {
         myManta.userData.arbNotesLayout = true
-        myManta.userData.padNotes = myManta.userData.arbNotes
-        myManta.reCalcAll()
+        
+        //myManta.userData.padNotes = myManta.userData.arbNotes
+        myManta.reCalcAll()//should fill padNotes with arbNotes+transpose
+        
         println("arb layout \(myManta.userData.arbNotesLayout)")
     }
     
-    func setIso() {
+    func setIsoNotesLayout() {
         myManta.userData.arbNotesLayout = false
-        myManta.userData.arbNotes = myManta.userData.padNotes
-        //save current arbitrary padnotes to arbnotes
+        
+        //myManta.userData.arbNotes = myManta.userData.padNotes//save current arbitrary padnotes to arbnotes
+        
         myManta.reCalcAll()//should refill padNotes with Iso layout
         println("iso layout")
     }
     //////////////////////////////////////////////////
     func setViewFromModel(){
         upLeftOutlet.selectItemAtIndex(12 - myManta.userData.upLeft)
-        println("upLeft = \(myManta.userData.upLeft)")
-        println("setting index to \(12 - myManta.userData.upLeft)")
+        //println("upLeft = \(myManta.userData.upLeft)")
+        //println("setting index to \(12 - myManta.userData.upLeft)")
         upRightOutlet.selectItemAtIndex(12 - myManta.userData.upRight)
-        myManta.userData.arbNotesLayout ? layoutTypeMenu.selectItemAtIndex(1):layoutTypeMenu.selectItemAtIndex(0)
+        if myManta.userData.arbNotesLayout {
+            layoutTypeMenu.selectItemAtIndex(1)
+            //myManta.userData.padNotes = myManta.userData.arbNotes
+        } else {
+            layoutTypeMenu.selectItemAtIndex(0)
+        }
         setTransposeLabeler()
         
         baseChannelMenu.selectItemAtIndex(myManta.userData.baseChannel)
@@ -112,9 +121,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         thinMenu.selectItemAtIndex(myManta.userData.thin-1)
         multiChanMenu.selectItemAtIndex(myManta.userData.numMultiChannels-1)
+        
+        myManta.userData.settingNotes = false//every load sets these back to false
+        myManta.userData.settingLEDs = false
+        ledSetButton.state = NSOffState
+        noteSetButton.state = NSOffState
+        
         myManta.reCalcAll()
     }
     /////////////////////////////////////////////////
+    func setLedLabel(){
+        let ledLabelText = myManta.userData.makeLedLabelText()
+        ledLabel.stringValue = ledLabelText
+    }
     
     
     func setTransposeLabeler() {
@@ -133,46 +152,39 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @IBAction func octaveDownButton(sender: NSButton) {
         myManta.Transpose(-12)
-        setTransposeLabeler()
+        myManta.reCalcAll()
     }
     @IBAction func octaveUpButton(sender: NSButton) {
         myManta.Transpose(12)
-        setTransposeLabeler()
+        myManta.reCalcAll()
     }
     @IBAction func semiDownButton(sender: NSButton) {
         myManta.Transpose(-1)
-        setTransposeLabeler()
+        myManta.reCalcAll()
     }
     @IBAction func semiUpButton(sender: NSButton) {
         myManta.Transpose(1)
-        setTransposeLabeler()
+        myManta.reCalcAll()
     }
     
     @IBAction func noteSetButton(sender: NSButton) {
         myManta.userData.settingNotes = !myManta.userData.settingNotes
         if myManta.userData.settingNotes {//when notes set switch to arb layout
-            setArb()
+            setArbNoteslayout()
             layoutTypeMenu.selectItemAtIndex(1)
+            myManta.userData.settingLEDs = false // can't set leds and notes at same time
+            ledSetButton.state = NSOffState
         }
-        myManta.userData.settingLEDs = false // can't set leds and notes at same time
-        ledSetButton.state = NSOffState
+        noteSetLabeler()
     }
     
     @IBOutlet weak var noteSetButton: NSButton!
     
-    
-    
     @IBOutlet weak var noteSetLabel: NSTextField!
     
     func noteSetLabeler() {
-        if myManta.userData.settingNotes {
-            noteSetLabel.stringValue = "pad " + String(myManta.lastPad) + "note " + String(myManta.userData.padNotes[myManta.lastPad])
-        } else {
-            noteSetLabel.stringValue = "not setting right now"
-        }
-        
+        noteSetLabel.stringValue = myManta.userData.makeNoteLabelText()
     }
-    
     
     @IBAction func pressureTypeMenu(sender: NSPopUpButton) {
         var item = sender.indexOfSelectedItem
@@ -235,8 +247,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @IBAction func setLEDbutton(sender: NSButton) {
         myManta.userData.settingLEDs = !myManta.userData.settingLEDs //toggle
-        myManta.userData.settingNotes = false // can't set leds and notes at same time
-        noteSetButton.state = NSOffState
+        if myManta.userData.settingLEDs {
+            myManta.userData.settingNotes = false // can't set leds and notes at same time
+            noteSetButton.state = NSOffState
+        }
+        setLedLabel()
     }
     
     var statusBar = NSStatusBar.systemStatusBar()
@@ -282,6 +297,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         connect()
         multiChanMenu.enabled = false
+        setLedLabel()
+        noteSetLabeler()
     }
     
     func connect(){

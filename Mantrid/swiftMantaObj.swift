@@ -200,7 +200,6 @@ class swiftMantaObj : OcManta {
                 setLedsFromNotes()
                 
             } else {//must be arbitrary layout
-                
                 var currentState = userData.arbLEDs[pad]
                 switch currentState { /// why cannot do ++ on an enum?
                 case UserData.sLEDState.Off:userData.arbLEDs[pad] = UserData.sLEDState.Amber
@@ -208,7 +207,11 @@ class swiftMantaObj : OcManta {
                 case UserData.sLEDState.Red:userData.arbLEDs[pad] = UserData.sLEDState.Off
                 }
                 setLedsFromArb()
-            }///////////  NOTE SETTING BIT  ///////////////
+            }
+            let appDelegate = NSApplication.sharedApplication().delegate as AppDelegate
+            appDelegate.setLedLabel()
+            
+            ///////////  NOTE SETTING BIT  ///////////////
         } else if userData.settingNotes && velocity > 0{ /// this whole thing only ever sets arbNotes - isonotes are recalculated on fly as required
             var pad = Int(idx)
             var val = Int(velocity)
@@ -302,9 +305,15 @@ class swiftMantaObj : OcManta {
 
     
     func reCalcAll() {
-        if !userData.arbNotesLayout { userData.setIsoNotes() }// only recalc isonotes if using them.
+        userData.arbNotesLayout ? userData.setArbNotes(): userData.setIsoNotes()
+        
+        //if !userData.arbNotesLayout { userData.setIsoNotes() }// only recalc isonotes if using them.
         self.findExtremeNotes()
         userData.setLEDsArbitrary ? self.setLedsFromArb() : self.setLedsFromNotes()
+        let appDelegate = NSApplication.sharedApplication().delegate as AppDelegate
+        appDelegate.setTransposeLabeler()
+        appDelegate.noteSetLabeler()
+        appDelegate.setLedLabel()
     }
     
     func findExtremeNotes(){

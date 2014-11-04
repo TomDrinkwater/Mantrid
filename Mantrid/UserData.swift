@@ -10,7 +10,7 @@ class UserData {
     
     enum sLEDState: String { //I really hate these stupid enums!
         case Off = "Off"
-        case Amber = "Amber"
+        case Amber = "Amb"
         case Red = "Red"
     }
     //////// ARRAYS //////////////
@@ -239,5 +239,84 @@ class UserData {
         }//end outer loop
        // for note in padNotes {println(note)}
     }// end setIsonotes
+    
+    
+    func setArbNotes() {
+        for i in 0...47 {
+            padNotes[i] = arbNotes[i] + transpose
+        }//basenote doesn't really apply to arbnotes
+    }
+    
+    func makeLedLabelText()-> String{
+        var ledLabelText = ""
+        if setLEDsArbitrary {// this is clumsy!
+            for i in 40...47{//line 6
+                ledLabelText += "\(arbLEDs[i].rawValue) "
+            }
+            ledLabelText += "\r"
+            for i in 32...39{
+                ledLabelText += "\(arbLEDs[i].rawValue) "
+            }
+            ledLabelText += "\r"
+            for i in 24...31{
+                ledLabelText += "\(arbLEDs[i].rawValue) "
+            }
+            ledLabelText += "\r"
+            for i in 16...23{
+                ledLabelText += "\(arbLEDs[i].rawValue) "
+            }
+            ledLabelText += "\r"
+            for i in 8...15{
+                ledLabelText += "\(arbLEDs[i].rawValue) "
+            }
+            ledLabelText += "\r"
+            for i in 0...7{
+                ledLabelText += "\(arbLEDs[i].rawValue) "
+            }
+        } else {
+            ledLabelText = ("A- \(noteLeds[0].rawValue) Bb-\(noteLeds[1].rawValue) B- \(noteLeds[2].rawValue) C- \(noteLeds[3].rawValue) \rC#-\(noteLeds[4].rawValue) D- \(noteLeds[5].rawValue) Eb-\(noteLeds[6].rawValue) E- \(noteLeds[7].rawValue) \rF- \(noteLeds[8].rawValue) F#-\(noteLeds[9].rawValue) G- \(noteLeds[10].rawValue) G#-\(noteLeds[11].rawValue)")
+        }
+        return ledLabelText
+    }
+    
+    func makeNoteLabelText() -> String{
+        var noteLabelText = ""
+        for i in 40...47{//line 6
+            if padNotes[i] < 100 {noteLabelText += " "}
+            noteLabelText += "\(padNotes[i]) "
+        }
+        noteLabelText += "\r"
+        for i in 32...39{
+            if padNotes[i] < 100 {noteLabelText += " "}
+            noteLabelText += "\(padNotes[i]) "
+        }
+        noteLabelText += "\r"
+        for i in 24...31{
+            if padNotes[i] < 100 {noteLabelText += " "}
+            noteLabelText += "\(padNotes[i]) "
+        }
+        noteLabelText += "\r"
+        for i in 16...23{
+            if padNotes[i] < 100 {noteLabelText += " "}
+            noteLabelText += "\(padNotes[i]) "
+        }
+        noteLabelText += "\r"
+        for i in 8...15{
+            if padNotes[i] < 100 {noteLabelText += " "}
+            noteLabelText += "\(padNotes[i]) "
+        }
+        noteLabelText += "\r"
+        for i in 0...7{
+            if padNotes[i] < 100 {noteLabelText += " "}
+            noteLabelText += "\(padNotes[i]) "
+        }
+        return noteLabelText
+    }
+
+    
+    
+    
+    
+    
 }//end userdata
 
