@@ -11,6 +11,15 @@
 		8753453E19F81BDD00676477 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8753453D19F81BDD00676477 /* Images.xcassets */; };
 		8753454119F81BDD00676477 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8753453F19F81BDD00676477 /* MainMenu.xib */; };
 		8753454D19F81BDD00676477 /* MantridTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8753454C19F81BDD00676477 /* MantridTests.swift */; };
+		8753455819F81C4200676477 /* Wrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8753455719F81C4200676477 /* Wrapper.mm */; };
+		8753456619F81E4D00676477 /* MantaUSB.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8753455C19F81E4D00676477 /* MantaUSB.cpp */; };
+		8753456719F81E4D00676477 /* Manta.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8753455D19F81E4D00676477 /* Manta.cpp */; };
+		8753456819F81E4D00676477 /* MantaMulti.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8753456119F81E4D00676477 /* MantaMulti.cpp */; };
+		96073F0B19FD47D400700C8C /* SaveandLoad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96073F0919FD47D400700C8C /* SaveandLoad.swift */; };
+		96073F0C19FD47D400700C8C /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96073F0A19FD47D400700C8C /* UserData.swift */; };
+		964683D119F989BF00629525 /* swiftMantaObj.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964683D019F989BF00629525 /* swiftMantaObj.swift */; };
+		964683D319F99A4000629525 /* MidiOutClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964683D219F99A4000629525 /* MidiOutClass.swift */; };
+		96E4744B1A06AEE200923008 /* hid.c in Sources */ = {isa = PBXBuildFile; fileRef = 96E474491A06AEE200923008 /* hid.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,6 +41,25 @@
 		8753454619F81BDD00676477 /* MantridTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MantridTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8753454B19F81BDD00676477 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8753454C19F81BDD00676477 /* MantridTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MantridTests.swift; sourceTree = "<group>"; };
+		8753455619F81C4200676477 /* Mantrid-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Mantrid-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
+		8753455719F81C4200676477 /* Wrapper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Wrapper.mm; sourceTree = "<group>"; };
+		8753455919F81C6900676477 /* Wrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Wrapper.h; path = ../Wrapper.h; sourceTree = "<group>"; };
+		8753455C19F81E4D00676477 /* MantaUSB.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MantaUSB.cpp; path = Mantrid/MantaUSB.cpp; sourceTree = "<group>"; };
+		8753455D19F81E4D00676477 /* Manta.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Manta.cpp; path = Mantrid/Manta.cpp; sourceTree = "<group>"; };
+		8753455E19F81E4D00676477 /* Manta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Manta.h; path = Mantrid/Manta.h; sourceTree = "<group>"; };
+		8753455F19F81E4D00676477 /* MantaClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MantaClient.h; path = Mantrid/MantaClient.h; sourceTree = "<group>"; };
+		8753456019F81E4D00676477 /* MantaExceptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MantaExceptions.h; path = Mantrid/MantaExceptions.h; sourceTree = "<group>"; };
+		8753456119F81E4D00676477 /* MantaMulti.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MantaMulti.cpp; path = Mantrid/MantaMulti.cpp; sourceTree = "<group>"; };
+		8753456219F81E4D00676477 /* MantaMulti.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MantaMulti.h; path = Mantrid/MantaMulti.h; sourceTree = "<group>"; };
+		8753456319F81E4D00676477 /* MantaServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MantaServer.h; path = Mantrid/MantaServer.h; sourceTree = "<group>"; };
+		8753456419F81E4D00676477 /* MantaUSB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MantaUSB.h; path = Mantrid/MantaUSB.h; sourceTree = "<group>"; };
+		8753456519F81E4D00676477 /* MantaVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MantaVersion.h; path = Mantrid/MantaVersion.h; sourceTree = "<group>"; };
+		96073F0919FD47D400700C8C /* SaveandLoad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveandLoad.swift; sourceTree = "<group>"; };
+		96073F0A19FD47D400700C8C /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		964683D019F989BF00629525 /* swiftMantaObj.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = swiftMantaObj.swift; sourceTree = "<group>"; };
+		964683D219F99A4000629525 /* MidiOutClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MidiOutClass.swift; sourceTree = "<group>"; };
+		96E474491A06AEE200923008 /* hid.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = hid.c; path = Mantrid/hid.c; sourceTree = "<group>"; };
+		96E4744A1A06AEE200923008 /* hidapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = hidapi.h; path = Mantrid/hidapi.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,7 +101,15 @@
 		8753453819F81BDD00676477 /* Mantrid */ = {
 			isa = PBXGroup;
 			children = (
+				8753456919F81E7000676477 /* libManta */,
+				8753455619F81C4200676477 /* Mantrid-Bridging-Header.h */,
+				8753455719F81C4200676477 /* Wrapper.mm */,
+				8753455919F81C6900676477 /* Wrapper.h */,
 				8753453B19F81BDD00676477 /* AppDelegate.swift */,
+				964683D019F989BF00629525 /* swiftMantaObj.swift */,
+				96073F0A19FD47D400700C8C /* UserData.swift */,
+				964683D219F99A4000629525 /* MidiOutClass.swift */,
+				96073F0919FD47D400700C8C /* SaveandLoad.swift */,
 				8753453D19F81BDD00676477 /* Images.xcassets */,
 				8753453F19F81BDD00676477 /* MainMenu.xib */,
 				8753453919F81BDD00676477 /* Supporting Files */,
@@ -104,6 +140,26 @@
 				8753454B19F81BDD00676477 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8753456919F81E7000676477 /* libManta */ = {
+			isa = PBXGroup;
+			children = (
+				96E474491A06AEE200923008 /* hid.c */,
+				96E4744A1A06AEE200923008 /* hidapi.h */,
+				8753455C19F81E4D00676477 /* MantaUSB.cpp */,
+				8753456419F81E4D00676477 /* MantaUSB.h */,
+				8753455D19F81E4D00676477 /* Manta.cpp */,
+				8753455E19F81E4D00676477 /* Manta.h */,
+				8753455F19F81E4D00676477 /* MantaClient.h */,
+				8753456019F81E4D00676477 /* MantaExceptions.h */,
+				8753456119F81E4D00676477 /* MantaMulti.cpp */,
+				8753456219F81E4D00676477 /* MantaMulti.h */,
+				8753456319F81E4D00676477 /* MantaServer.h */,
+				8753456519F81E4D00676477 /* MantaVersion.h */,
+			);
+			name = libManta;
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -205,7 +261,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8753456819F81E4D00676477 /* MantaMulti.cpp in Sources */,
 				8753453C19F81BDD00676477 /* AppDelegate.swift in Sources */,
+				8753456619F81E4D00676477 /* MantaUSB.cpp in Sources */,
+				96073F0B19FD47D400700C8C /* SaveandLoad.swift in Sources */,
+				8753455819F81C4200676477 /* Wrapper.mm in Sources */,
+				96E4744B1A06AEE200923008 /* hid.c in Sources */,
+				8753456719F81E4D00676477 /* Manta.cpp in Sources */,
+				964683D319F99A4000629525 /* MidiOutClass.swift in Sources */,
+				96073F0C19FD47D400700C8C /* UserData.swift in Sources */,
+				964683D119F989BF00629525 /* swiftMantaObj.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -320,10 +385,20 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 0.1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				GENERATE_PROFILING_CODE = YES;
 				INFOPLIST_FILE = Mantrid/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Mantrid-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -331,10 +406,21 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_USE_OPTIMIZATION_PROFILE = NO;
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 0.1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				GCC_OPTIMIZATION_LEVEL = s;
+				GENERATE_PROFILING_CODE = YES;
 				INFOPLIST_FILE = Mantrid/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Mantrid-Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -393,6 +479,7 @@
 				8753455219F81BDD00676477 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8753455319F81BDD00676477 /* Build configuration list for PBXNativeTarget "MantridTests" */ = {
 			isa = XCConfigurationList;
@@ -401,6 +488,7 @@
 				8753455519F81BDD00676477 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
