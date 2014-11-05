@@ -81,7 +81,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func setIsoNotesLayout() {
         myManta.userData.arbNotesLayout = false
         
-        //myManta.userData.arbNotes = myManta.userData.padNotes//save current arbitrary padnotes to arbnotes
+        myManta.userData.arbNotes = myManta.userData.padNotes//save current arbitrary padnotes to arbnotes
         
         myManta.reCalcAll()//should refill padNotes with Iso layout
         println("iso layout")
@@ -170,11 +170,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @IBAction func noteSetButton(sender: NSButton) {
         myManta.userData.settingNotes = !myManta.userData.settingNotes
+        println("settingNotes \(myManta.userData.settingNotes)")
         if myManta.userData.settingNotes {//when notes set switch to arb layout
+            
             setArbNoteslayout()
             layoutTypeMenu.selectItemAtIndex(1)
             myManta.userData.settingLEDs = false // can't set leds and notes at same time
             ledSetButton.state = NSOffState
+        } else {// if finished setting notes save arbnotes
+            myManta.userData.arbNotes = myManta.userData.padNotes
         }
         noteSetLabeler()
     }

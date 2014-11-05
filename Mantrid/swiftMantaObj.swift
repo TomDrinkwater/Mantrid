@@ -218,14 +218,17 @@ class swiftMantaObj : OcManta {
             var note = userData.padNotes[pad]//settings are made on padNotes as that is current, saved to arbnotes when switch back to iso mode
             noteOff(note, withValue:val, withValue:pad)//stop the note on old value of pad just started above
             var pitchClass = Int((note)%12)
-            (pitchClass == 11) ? (note = note-11) : (note = note+1)
-            if note <= 127 { userData.padNotes[pad] = note}//check in range!
+            pitchClass == 11 ? (note = note-11) : (note = note+1)
+            //println("pitchClass \(pitchClass)")
+            if note <= 127 { userData.padNotes[pad] = note } //check in range!
+            userData.arbNotes[pad] = userData.padNotes[pad]
+            //println("set pad \(pad) to note \(note)")
             lastPad = pad
             noteOn(note, withValue:val, withValue:pad)// start the new note//will be stopped by above on release (i hope)
             let appDelegate = NSApplication.sharedApplication().delegate as AppDelegate
             appDelegate.noteSetLabeler()
-            
-            reCalcAll()
+            userData.setLEDsArbitrary ? self.setLedsFromArb() : self.setLedsFromNotes()
+            //reCalcAll()
         }// end settings section
     }// end padvelocity event
     
@@ -253,6 +256,7 @@ class swiftMantaObj : OcManta {
                     var note = userData.padNotes[lastPad]
                     (note > 12) ? (note = note - 12) : (note = note + 108)// transpose lastpad down 8ve or up 8ves
                     userData.padNotes[lastPad] = note
+                    userData.arbNotes[lastPad] = note
                     let appDelegate = NSApplication.sharedApplication().delegate as AppDelegate
                     appDelegate.noteSetLabeler()
                 } else if programButton {//is it in program mode?
@@ -273,6 +277,7 @@ class swiftMantaObj : OcManta {
                     var note = userData.padNotes[lastPad]
                     (note < 115) ? (note = note + 12) : (note = note - 108)// transpose lastpad down 8ve or up 8ves
                     userData.padNotes[lastPad] = note
+                    userData.arbNotes[lastPad] = note
                     let appDelegate = NSApplication.sharedApplication().delegate as AppDelegate
                     appDelegate.noteSetLabeler()
                 } else if programButton {
