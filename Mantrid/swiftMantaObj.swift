@@ -42,7 +42,6 @@ class swiftMantaObj : OcManta {
     
     override init() {
         super.init()
-        //connected = false
     }//end init
     
     func onConnect() {
@@ -66,7 +65,7 @@ class swiftMantaObj : OcManta {
         
         //midiOut.closeOutput()
         SetLEDControl(PPadAndButton, withValue:true)
-        self.ClearPadAndButtonLEDs()///this needs the subsequent handleEvents to work!
+        self.ClearPadAndButtonLEDs()///this needs the subsequent handleEvents to actually work!
         self.SafeHandleEvents()//has to be called from this thread?
         //SetLEDControl(PPadAndButton, withValue:false)
         self.Disconnect()
@@ -88,6 +87,8 @@ class swiftMantaObj : OcManta {
         println("stopping getManta and disconnecting")
         let appDelegate = NSApplication.sharedApplication().delegate as AppDelegate
         appDelegate.menuConnectItem.title = "..reconnect"
+        appDelegate.statusImage = NSImage(named: "blueicon")
+        appDelegate.statusBarItem.image = appDelegate.statusImage
         
     }//end mantaThread
     //////////////////////////////////////////

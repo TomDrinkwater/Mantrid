@@ -20,8 +20,8 @@ class UserData {
     //var padLeds = [sLEDState](count: 48, repeatedValue: sLEDState.Off)    //this is used in set leds from notes but a single variable would do?
     var arbLEDs = [sLEDState](count: 48, repeatedValue: sLEDState.Off)
     var padNotes = [Int](count: 49, repeatedValue: 0)//this is recalculated on the fly, shouldn't even be in userData? MOVE
-    var arbNotes = [Int](count: 49, repeatedValue: 60)//equivalent to padnotes // copied to and from padnotes to actually use it, this is just the back up.
-    //set to middle C to start
+    var arbNotes = [40, 42, 44, 46, 48, 50, 52, 54, 47, 49, 51, 53, 55, 57, 59, 61, 52, 54, 56, 58, 60, 62, 64, 66, 59, 61, 63,65, 67, 69, 71, 73, 64, 66, 68, 70, 72, 74, 76, 78, 71, 73, 75, 77, 79, 81, 83, 85, 87]//equivalent to padnotes // copied to and from padnotes to actually use it, this is just the back up.
+    //init to wicki a tone lower to start to be diff from iso yet not all same note
 
     ////// FLAGS //////////
     var settingNotes = false // should these be saved? should always be false when loading setup! MOVE
@@ -248,7 +248,7 @@ class UserData {
     }
     
     func makeLedLabelText()-> String{
-        var ledLabelText = ""
+        var ledLabelText = "  "
         if setLEDsArbitrary {// this is clumsy!
             for i in 40...47{//line 6
                 ledLabelText += "\(arbLEDs[i].rawValue) "
@@ -257,7 +257,7 @@ class UserData {
             for i in 32...39{
                 ledLabelText += "\(arbLEDs[i].rawValue) "
             }
-            ledLabelText += "\r"
+            ledLabelText += "\r  "
             for i in 24...31{
                 ledLabelText += "\(arbLEDs[i].rawValue) "
             }
@@ -265,7 +265,7 @@ class UserData {
             for i in 16...23{
                 ledLabelText += "\(arbLEDs[i].rawValue) "
             }
-            ledLabelText += "\r"
+            ledLabelText += "\r  "
             for i in 8...15{
                 ledLabelText += "\(arbLEDs[i].rawValue) "
             }
@@ -280,7 +280,7 @@ class UserData {
     }
     
     func makeNoteLabelText() -> String{
-        var noteLabelText = ""
+        var noteLabelText = "  "
         for i in 40...47{//line 6
             if padNotes[i] < 100 {noteLabelText += " "}
             noteLabelText += "\(padNotes[i]) "
@@ -290,7 +290,7 @@ class UserData {
             if padNotes[i] < 100 {noteLabelText += " "}
             noteLabelText += "\(padNotes[i]) "
         }
-        noteLabelText += "\r"
+        noteLabelText += "\r  "
         for i in 24...31{
             if padNotes[i] < 100 {noteLabelText += " "}
             noteLabelText += "\(padNotes[i]) "
@@ -300,7 +300,7 @@ class UserData {
             if padNotes[i] < 100 {noteLabelText += " "}
             noteLabelText += "\(padNotes[i]) "
         }
-        noteLabelText += "\r"
+        noteLabelText += "\r  "
         for i in 8...15{
             if padNotes[i] < 100 {noteLabelText += " "}
             noteLabelText += "\(padNotes[i]) "

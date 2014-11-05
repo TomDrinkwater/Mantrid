@@ -263,7 +263,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var statusBarItem : NSStatusItem = NSStatusItem()
     var menu: NSMenu = NSMenu()
     var menuConnectItem : NSMenuItem = NSMenuItem()
-    var menuWindowItem : NSMenuItem = NSMenuItem()
+    var menuShowWindowItem : NSMenuItem = NSMenuItem()
+    var menuHideWindowItem : NSMenuItem = NSMenuItem()
     var menuQuitItem : NSMenuItem = NSMenuItem()
     var statusImage:NSImage? = nil
     
@@ -273,7 +274,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         statusBarItem.menu = menu
         //statusBarItem.title = "Mantrid"
         
-        self.statusImage = NSImage(named: "m")
+        self.statusImage = NSImage(named: "blueicon")
         statusBarItem.image = self.statusImage
         
         //Add menuClickedItem to menu
@@ -282,11 +283,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         menuConnectItem.keyEquivalent = ""
         menu.addItem(menuConnectItem)
         
+        //Add menuShowWindowItem to menu
+        menuShowWindowItem.title = "Show"
+        menuShowWindowItem.action = Selector("setWindowVisible:")
+        menuShowWindowItem.keyEquivalent = ""
+        menu.addItem(menuShowWindowItem)
+        
         //Add menuWindowItem to menu
-        menuWindowItem.title = "Show"
-        menuWindowItem.action = Selector("setWindowVisible:")
-        menuWindowItem.keyEquivalent = ""
-        menu.addItem(menuWindowItem)
+        menuHideWindowItem.title = "Hide"
+        menuHideWindowItem.action = Selector("hideWindow:")
+        menuHideWindowItem.keyEquivalent = ""
+        menu.addItem(menuHideWindowItem)
         
         //Add menuWindowItem to menu
         menuQuitItem.title = "Quit"
@@ -312,10 +319,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             myManta.quitting = false
             var myserial = myManta.GetSerialNumber()
             menuConnectItem.title = "connected to \(myserial)"
+            self.statusImage = NSImage(named: "redicon")
+            statusBarItem.image = self.statusImage
             myManta.onConnect()
         } else {
             menuConnectItem.title = "..connect"
             println("failed to connect")
+            self.statusImage = NSImage(named: "blueicon")
+            statusBarItem.image = self.statusImage
         }
         
         //myManta.Connect()
@@ -323,18 +334,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     
     func setWindowVisible(sender: AnyObject){
-        if menuWindowItem.title == "Show" {
-            
             NSApplication.sharedApplication().activateIgnoringOtherApps(true)//make whole app foreground
             self.window.makeKeyAndOrderFront(self)//show
-            menuWindowItem.title = "Hide"//set title to opposite
-        }
-        else
-        {
-            self.window.orderOut(self)//else hide
-            menuWindowItem.title = "Show"//set title to opposite
-        }
+            //menuWindowItem.title = "Hide"//set title to opposite
     }
+    
+    func hideWindow(sender: AnyObject){
+            self.window.orderOut(self)//else hide
+            //menuWindowItem.title = "Show"//set title to opposite
+    }
+
     
     func quit(sender: AnyObject){//WHY DOESN'T THIS WORK!!!
         
