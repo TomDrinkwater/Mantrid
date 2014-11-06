@@ -1,3 +1,6 @@
+//  Copyright (c) 2014 Tom Drinkwater.
+//  www.tomdrinkwater.com
+
 #import <Foundation/Foundation.h>
 #import "Manta.h"
 #import "MantaExceptions.h"

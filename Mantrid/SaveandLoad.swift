@@ -2,17 +2,16 @@
 //  SaveandLoad.swift
 //  MenuBar
 //
-//  Created by Office on 05/10/2014.
-//  Copyright (c) 2014 Office. All rights reserved.
-//
+//  Copyright (c) 2014 Tom Drinkwater.
+//  www.tomdrinkwater.com
 
 import Foundation
 import Cocoa //needed for NSSavePanel
 import AppKit
-
+// THIS CLASS CURRENTLY UNUSED
 class SaveandLoad {
     
-    let allUserSettings = ["field":"value"]//need to populate this correctly and get the vars into it from other class
+    //let allUserSettings = ["field":"value"]//need to populate this correctly and get the vars into it from other class
     
     //These are instance methods, should they really be type methods? why? shoulod this be an object at all? better  just a file of funcs?
     

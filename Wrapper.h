@@ -1,3 +1,6 @@
+//  Copyright (c) 2014 Tom Drinkwater.
+//  www.tomdrinkwater.com
+
 #ifndef _MantaObject_h
 #define _MantaObject_h
 

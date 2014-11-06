@@ -1,6 +1,9 @@
 //  UserData.swift
 //  Mantrid
 //
+//  Copyright (c) 2014 Tom Drinkwater.
+//  www.tomdrinkwater.com
+
 import Foundation
 
 class UserData {

@@ -2,8 +2,8 @@
 //  MidiOutClass.swift
 //  swiftmidi
 //
-//  Created by Office on 21/10/2014.
-//  Copyright (c) 2014 puce. All rights reserved.
+//  Copyright (c) 2014 Tom Drinkwater.
+//  www.tomdrinkwater.com
 //
 
 import Foundation

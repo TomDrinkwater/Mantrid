@@ -3,8 +3,8 @@
 //  Mantrid
 //
 //  Created by Office on 23/10/2014.
-//  Copyright (c) 2014 puce. All rights reserved.
-//
+//  Copyright (c) 2014 Tom Drinkwater.
+//  www.tomdrinkwater.com
 
 import Foundation
 //import "MantaObject.h" //not needed?
