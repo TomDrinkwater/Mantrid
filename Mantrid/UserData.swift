@@ -19,7 +19,7 @@ class UserData {
     
     //var padLeds = [sLEDState](count: 48, repeatedValue: sLEDState.Off)    //this is used in set leds from notes but a single variable would do?
     var arbLEDs = [sLEDState](count: 48, repeatedValue: sLEDState.Off)
-    var padNotes = [Int](count: 49, repeatedValue: 0)//this is recalculated on the fly, shouldn't even be in userData? MOVE
+    var padNotes = [Int](count: 49, repeatedValue: 42)//this is recalculated on the fly, shouldn't even be in userData? MOVE
     var arbNotes = [40, 42, 44, 46, 48, 50, 52, 54, 47, 49, 51, 53, 55, 57, 59, 61, 52, 54, 56, 58, 60, 62, 64, 66, 59, 61, 63,65, 67, 69, 71, 73, 64, 66, 68, 70, 72, 74, 76, 78, 71, 73, 75, 77, 79, 81, 83, 85, 87]//equivalent to padnotes // copied to and from padnotes to actually use it, this is just the back up.
     //init to wicki a tone lower to start to be diff from iso yet not all same note
 
@@ -38,9 +38,9 @@ class UserData {
     var thin = 1
     var upRight = 7
     var upLeft = 5
-    var basenote = 6//hmm how is this different to transpose?
+    var basenote = 42//this is now a midi note number rather than a pitch class, still refers to pad 0
     var numMultiChannels = 15 //channel 16 is number 15
-    var transpose = 0
+    //var transpose = 0
     var baseChannel = 0
     
      ////////////// FUNCTIONS ///////////////
@@ -54,7 +54,7 @@ class UserData {
         userDefaults.setInteger(upLeft, forKey: "upLeft")
         userDefaults.setInteger(basenote, forKey: "basenote")
         userDefaults.setInteger(numMultiChannels, forKey: "numMultiChannels")
-        userDefaults.setInteger(transpose, forKey: "transpose")
+        //userDefaults.setInteger(transpose, forKey: "transpose")
         userDefaults.setInteger(baseChannel, forKey: "baseChannel")
         
         userDefaults.setBool(arbNotesLayout, forKey: "arbNotesLayout")
@@ -153,9 +153,6 @@ class UserData {
             }
         }
 
-        transpose = defaults.integerForKey("transpose")// no checking of type
-        println("loaded transpose = \(transpose)")
-        
         basenote  = defaults.integerForKey("basenote")// no checking of type
         println("loaded basenote = \(basenote)")
         
@@ -208,8 +205,6 @@ class UserData {
         } else {
             println("failed to read arbLEDsNS")
         }
-        
-        
     }//end loadDefaults
     
     init() {
@@ -221,7 +216,7 @@ class UserData {
         var nextPad = upRight - upLeft
         var rownumber = 0
         var j = 0
-        padNotes[j] = (36 + transpose + basenote)//set first note
+        padNotes[j] = (basenote)//set first note
         ++j
         for i in 0...5 {//loop 6 times for 6 rows
             for k in 0...6 {//7 remaining pads per row
@@ -237,15 +232,21 @@ class UserData {
             padNotes[j] = (padNotes[j-8] + thisrowoffset)//does first note of new row //THIS IS AN OUT BY ONE ERROR requires array to be one bigger
             ++j
         }//end outer loop
-       // for note in padNotes {println(note)}
+        let lowestNote = minElement(padNotes)//this is a bit crappy!
+        let highestNote = maxElement(padNotes)
+        var correction = 0
+        if lowestNote < 0 {correction = 0 - lowestNote}
+        if highestNote > 127 {correction = 127 - highestNote}
+        if correction  != 0 {
+            for ii in 0...47 {
+                padNotes[ii] += correction
+                if padNotes[ii] < 0 {padNotes[ii] = 0}
+                if padNotes[ii] > 127 {padNotes[ii] = 127}
+            }
+        }
+        println("isolayout correction is \(correction)")
+        
     }// end setIsonotes
-    
-    
-    func setArbNotes() {
-        for i in 0...47 {
-            padNotes[i] = arbNotes[i] + transpose
-        }//basenote doesn't really apply to arbnotes
-    }
     
     func makeLedLabelText()-> String{
         var ledLabelText = "  "
@@ -313,10 +314,5 @@ class UserData {
         return noteLabelText
     }
 
-    
-    
-    
-    
-    
 }//end userdata
 

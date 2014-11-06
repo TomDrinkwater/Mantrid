@@ -1,10 +1,6 @@
 //
 //  AppDelegate.swift
 //  Mantrid
-//
-//  Created by puce on 22/10/2014.
-//  Copyright (c) 2014 puce. All rights reserved.
-//
 
 import Cocoa
 
@@ -45,7 +41,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         myManta.userData.baseChannel = sender.indexOfSelectedItem
     }
     
-    
     @IBAction func upLeftMenu(sender: NSPopUpButton) {
         var item = sender.indexOfSelectedItem
         myManta.userData.upLeft = (item * -1) + 12
@@ -72,33 +67,31 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func setArbNoteslayout() {
         myManta.userData.arbNotesLayout = true
         
-        //myManta.userData.padNotes = myManta.userData.arbNotes
-        myManta.reCalcAll()//should fill padNotes with arbNotes+transpose
+        myManta.userData.padNotes = myManta.userData.arbNotes
         
         println("arb layout \(myManta.userData.arbNotesLayout)")
+        myManta.reCalcAll()
     }
     
     func setIsoNotesLayout() {
         myManta.userData.arbNotesLayout = false
         
-        myManta.userData.arbNotes = myManta.userData.padNotes//save current arbitrary padnotes to arbnotes
+        //myManta.userData.arbNotes = myManta.userData.padNotes//save current arbitrary padnotes to arbnotes
+        //shouldnt be needed as should have kept arbnotes up to date anyway
         
-        myManta.reCalcAll()//should refill padNotes with Iso layout
+        //myManta.userData.setIsoNotes()// refill padNotes with Iso layout
+        myManta.reCalcAll()// includes refill padNotes with Iso layout
         println("iso layout")
     }
     //////////////////////////////////////////////////
     func setViewFromModel(){
         upLeftOutlet.selectItemAtIndex(12 - myManta.userData.upLeft)
-        //println("upLeft = \(myManta.userData.upLeft)")
-        //println("setting index to \(12 - myManta.userData.upLeft)")
         upRightOutlet.selectItemAtIndex(12 - myManta.userData.upRight)
         if myManta.userData.arbNotesLayout {
             layoutTypeMenu.selectItemAtIndex(1)
-            //myManta.userData.padNotes = myManta.userData.arbNotes
         } else {
             layoutTypeMenu.selectItemAtIndex(0)
         }
-        setTransposeLabeler()
         
         baseChannelMenu.selectItemAtIndex(myManta.userData.baseChannel)
         
@@ -136,11 +129,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         ledLabel.stringValue = ledLabelText
     }
     
-    
-    func setTransposeLabeler() {
-        transposeLabel.stringValue = "transpose = " + String(myManta.userData.transpose)
-    }
-    
     @IBAction func saveButton(sender: NSButton) {
         myManta.userData.saveDefaults()
     }
@@ -150,22 +138,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         setViewFromModel()
     }
     
-    
     @IBAction func octaveDownButton(sender: NSButton) {
         myManta.Transpose(-12)
-        myManta.reCalcAll()
     }
     @IBAction func octaveUpButton(sender: NSButton) {
         myManta.Transpose(12)
-        myManta.reCalcAll()
     }
     @IBAction func semiDownButton(sender: NSButton) {
         myManta.Transpose(-1)
-        myManta.reCalcAll()
     }
     @IBAction func semiUpButton(sender: NSButton) {
         myManta.Transpose(1)
-        myManta.reCalcAll()
     }
     
     @IBAction func noteSetButton(sender: NSButton) {
@@ -180,7 +163,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         } else {// if finished setting notes save arbnotes
             myManta.userData.arbNotes = myManta.userData.padNotes
         }
-        noteSetLabeler()
+        myManta.reCalcAll()
     }
     
     @IBOutlet weak var noteSetButton: NSButton!
@@ -239,6 +222,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             println("leds default both")
         }
         myManta.reCalcAll()
+        
     }
     
     @IBAction func setLEDsArbMenu(sender: NSPopUpButton) {
@@ -246,7 +230,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         item == 0 ? (myManta.userData.setLEDsArbitrary = false) : (myManta.userData.setLEDsArbitrary = true)
         myManta.reCalcAll()
     }
-    
     
     @IBOutlet weak var ledSetButton: NSButton!
     
@@ -344,7 +327,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             //menuWindowItem.title = "Show"//set title to opposite
     }
 
-    
     func quit(sender: AnyObject){//WHY DOESN'T THIS WORK!!!
         
         let hasquit = myManta.onQuit()
@@ -356,9 +338,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         NSApplication.sharedApplication().terminate(self)
     }
 
-    
-    
-    func applicationWillTerminate(aNotification: NSNotification) {//does this actually ever get called?
+   func applicationWillTerminate(aNotification: NSNotification) {//does this actually ever get called?
         //myManta.onQuit()
     }//end applicationWillTerminate
     

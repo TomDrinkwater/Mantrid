@@ -216,20 +216,20 @@ class swiftMantaObj : OcManta {
         } else if userData.settingNotes && velocity > 0{ /// this whole thing only ever sets arbNotes - isonotes are recalculated on fly as required
             var pad = Int(idx)
             var val = Int(velocity)
-            var note = userData.padNotes[pad]//settings are made on padNotes as that is current, saved to arbnotes when switch back to iso mode
+            var note = userData.padNotes[pad]//settings are made on padNotes as that is current, saved to arbnotes too below
             noteOff(note, withValue:val, withValue:pad)//stop the note on old value of pad just started above
             var pitchClass = Int((note)%12)
             pitchClass == 11 ? (note = note-11) : (note = note+1)
             //println("pitchClass \(pitchClass)")
             if note <= 127 { userData.padNotes[pad] = note } //check in range!
-            userData.arbNotes[pad] = userData.padNotes[pad]
+            userData.arbNotes[pad] = userData.padNotes[pad]// keep arbnotes up to date too!
             //println("set pad \(pad) to note \(note)")
             lastPad = pad
-            noteOn(note, withValue:val, withValue:pad)// start the new note//will be stopped by above on release (i hope)
+            noteOn(note, withValue:val, withValue:pad)// start the new note//will be stopped by above on release
             let appDelegate = NSApplication.sharedApplication().delegate as AppDelegate
             appDelegate.noteSetLabeler()
             userData.setLEDsArbitrary ? self.setLedsFromArb() : self.setLedsFromNotes()
-            //reCalcAll()
+            //reCalcAll()// not needed?
         }// end settings section
     }// end padvelocity event
     
@@ -270,8 +270,6 @@ class swiftMantaObj : OcManta {
                     }
                 } else {
                     shiftButton ? self.Transpose(-1) : self.Transpose(-12)
-                    let appDelegate = NSApplication.sharedApplication().delegate as AppDelegate
-                    appDelegate.setTransposeLabeler()
                 }
             case 3: // bottom right
                 if userData.settingNotes {// this preempts all normal button effects
@@ -292,8 +290,6 @@ class swiftMantaObj : OcManta {
                     }
                 } else {
                     shiftButton ? self.Transpose(1) : self.Transpose(12)//ternary operator
-                    let appDelegate = NSApplication.sharedApplication().delegate as AppDelegate
-                    appDelegate.setTransposeLabeler()
                 }
             default:
                 println("this should never happen")//do nothing
@@ -302,22 +298,26 @@ class swiftMantaObj : OcManta {
     }//end ButtonVelocityEvent
 
     func Transpose(transposition: Int){
-        if (highestNote + transposition) < 127 && (lowestNote + transposition > 0)
-        {userData.transpose += transposition}
-        
-       // //AppDelegate.setTransposeLabeler()
+        if (highestNote + transposition) <= 127 && (lowestNote + transposition >= 0){
+            for i in 0...47 {userData.padNotes[i]+=transposition}//transpose padnotes the easy way, could call set iso instead
+            if userData.arbNotesLayout {
+                for i in 0...47 {userData.arbNotes[i]+=transposition}
+            } else {//if padnotes is being transposed then need to adjust basenote
+                userData.basenote += transposition // for future recalcs
+            }
+        }
         reCalcAll()
+      
     }//end Transpose
 
     
-    func reCalcAll() {
-        userData.arbNotesLayout ? userData.setArbNotes(): userData.setIsoNotes()
-        
-        //if !userData.arbNotesLayout { userData.setIsoNotes() }// only recalc isonotes if using them.
+    func reCalcAll() {//is this still needed?
+       
+        userData.arbNotesLayout ?  userData.padNotes = userData.arbNotes : userData.setIsoNotes()
+        // only recalc isonotes if using them.
         self.findExtremeNotes()
         userData.setLEDsArbitrary ? self.setLedsFromArb() : self.setLedsFromNotes()
         let appDelegate = NSApplication.sharedApplication().delegate as AppDelegate
-        appDelegate.setTransposeLabeler()
         appDelegate.noteSetLabeler()
         appDelegate.setLedLabel()
     }

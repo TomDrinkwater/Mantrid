@@ -27,7 +27,6 @@
                 <outlet property="polyPressMenu" destination="kY7-Wi-eDV" id="M8f-6h-qUj"/>
                 <outlet property="pressTypeMenu" destination="kY7-Wi-eDV" id="nw6-aK-B68"/>
                 <outlet property="thinMenu" destination="huB-Tp-wec" id="D5L-hw-KFv"/>
-                <outlet property="transposeLabel" destination="ZCc-se-fwI" id="fuu-Hh-eZT"/>
                 <outlet property="upLeftOutlet" destination="w6g-6i-sl6" id="28N-j3-85N"/>
                 <outlet property="upRightOutlet" destination="jRk-va-SqO" id="lbJ-Ef-ilE"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
@@ -219,7 +218,7 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w6g-6i-sl6">
-                                    <rect key="frame" x="13" y="202" width="56" height="26"/>
+                                    <rect key="frame" x="13" y="202" width="61" height="26"/>
                                     <popUpButtonCell key="cell" type="push" title="+5" bezelStyle="rounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" inset="2" arrowPosition="arrowAtCenter" selectedItem="Scm-AM-f6y" id="BKg-kg-0PR">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="menu"/>
@@ -308,7 +307,7 @@
                                     </connections>
                                 </popUpButton>
                                 <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jRk-va-SqO">
-                                    <rect key="frame" x="77" y="202" width="56" height="26"/>
+                                    <rect key="frame" x="72" y="202" width="61" height="26"/>
                                     <popUpButtonCell key="cell" type="push" title="+7" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" arrowPosition="arrowAtCenter" selectedItem="ebY-fV-kWc" id="tZi-bH-Weh">
                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="menu"/>
@@ -414,14 +413,6 @@
                                         <action selector="layoutTypeMenu:" target="Voe-Tx-rLC" id="e87-xx-vrR"/>
                                     </connections>
                                 </popUpButton>
-                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZCc-se-fwI">
-                                    <rect key="frame" x="145" y="136" width="110" height="17"/>
-                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="transpose = 0" id="s75-he-527">
-                                        <font key="font" metaFont="system"/>
-                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                    </textFieldCell>
-                                </textField>
                                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Oz-5K-7x0">
                                     <rect key="frame" x="9" y="140" width="60" height="32"/>
                                     <buttonCell key="cell" type="push" title="-8ve" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="1ja-zG-BIV">
@@ -462,24 +453,24 @@
                                         <action selector="octaveUpButton:" target="Voe-Tx-rLC" id="t8q-kn-Y1n"/>
                                     </connections>
                                 </button>
-                                <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ax9-mK-tN3">
-                                    <rect key="frame" x="140" y="202" width="110" height="26"/>
-                                    <buttonCell key="cell" type="bevel" title="Set Arb Notes" alternateTitle="press when done" bezelStyle="regularSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Shn-nr-5qk">
-                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
-                                        <font key="font" metaFont="system"/>
-                                    </buttonCell>
-                                    <connections>
-                                        <action selector="noteSetButton:" target="Voe-Tx-rLC" id="8zY-f7-xSY"/>
-                                    </connections>
-                                </button>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Ej-eO-Vob">
-                                    <rect key="frame" x="16" y="13" width="200" height="92"/>
+                                    <rect key="frame" x="16" y="14" width="200" height="92"/>
                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Note Layout" id="Pei-Ma-Kim">
                                         <font key="font" size="10" name="Monaco"/>
                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                 </textField>
+                                <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ax9-mK-tN3">
+                                    <rect key="frame" x="140" y="196" width="109" height="30"/>
+                                    <buttonCell key="cell" type="bevel" title="Set Arb Notes" alternateTitle="Stop Setting" bezelStyle="regularSquare" image="bluegrey" imagePosition="overlaps" alignment="center" alternateImage="redbutton" imageScaling="axesIndependently" inset="2" id="Shn-nr-5qk">
+                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                        <font key="font" metaFont="system"/>
+                                    </buttonCell>
+                                    <connections>
+                                        <action selector="noteSetButton:" target="Voe-Tx-rLC" id="8zY-f7-xSY"/>
+                                    </connections>
+                                </button>
                             </subviews>
                         </view>
                         <color key="borderColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -529,9 +520,9 @@
                                     </connections>
                                 </popUpButton>
                                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d2d-Th-Rqp">
-                                    <rect key="frame" x="16" y="117" width="141" height="29"/>
-                                    <buttonCell key="cell" type="bevel" title="Set LEDs now" alternateTitle="done leds" bezelStyle="regularSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="oGd-A3-lai">
-                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
+                                    <rect key="frame" x="18" y="115" width="137" height="30"/>
+                                    <buttonCell key="cell" type="bevel" title="Set LEDs now" alternateTitle="Stop Setting" bezelStyle="regularSquare" image="bluegrey" imagePosition="overlaps" alignment="center" alternateImage="redbutton" imageScaling="axesIndependently" inset="2" id="oGd-A3-lai">
+                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                         <font key="font" metaFont="system"/>
                                     </buttonCell>
                                     <connections>
@@ -556,4 +547,8 @@
             <point key="canvasLocation" x="-468.5" y="343.5"/>
         </window>
     </objects>
+    <resources>
+        <image name="bluegrey" width="220" height="50"/>
+        <image name="redbutton" width="220" height="50"/>
+    </resources>
 </document>
