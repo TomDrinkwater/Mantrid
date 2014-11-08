@@ -40,6 +40,7 @@ class swiftMantaObj : OcManta {
     var shiftButton = false
     var programButton = false
     
+    
     override init() {
         super.init()
     }//end init
@@ -80,7 +81,7 @@ class swiftMantaObj : OcManta {
                 connected = self.SafeHandleEvents()
                 //println("SPLARGE connected = \(connected) quitting = \(quitting)")
             }
-            NSThread.sleepForTimeInterval(0.001)//is there GCD way to do this?
+           NSThread.sleepForTimeInterval(0.001)//is there GCD way to do this?
             //connected = self.IsConnected()
         }
         self.Disconnect()
@@ -193,7 +194,7 @@ class swiftMantaObj : OcManta {
                 var note = userData.padNotes[pad]
                 var pitchClass = Int((note+3)%12)
                 var currentState = userData.noteLeds[pitchClass]
-                switch currentState { /// why cannot do ++ on an enum?
+                switch currentState {
                 case UserData.sLEDState.Off:userData.noteLeds[pitchClass] = UserData.sLEDState.Amber
                 case UserData.sLEDState.Amber:userData.noteLeds[pitchClass] = UserData.sLEDState.Red
                 case UserData.sLEDState.Red:userData.noteLeds[pitchClass] = UserData.sLEDState.Off
@@ -238,7 +239,7 @@ class swiftMantaObj : OcManta {
         if (value < 4096){
             var cc = value/32;
             midiOut.contController(userData.baseChannel, type:Int(idx+1), value:Int(cc))//send mod wheel and breath
-            println("slider = \(cc)")
+            //println("slider = \(cc)")
         }
     }//end slider event
     
@@ -285,7 +286,6 @@ class swiftMantaObj : OcManta {
                         midiOut.bankChange(userData.baseChannel, bank:currentBank, program:currentProgram)//send bank and prog chnage
                     } else {
                         if currentProgram<127 {++currentProgram}
-                        ++currentProgram
                         midiOut.progChange(userData.baseChannel, value:currentProgram)//send just prog change
                     }
                 } else {
@@ -294,8 +294,20 @@ class swiftMantaObj : OcManta {
             default:
                 println("this should never happen")//do nothing
             }//end switch
+           setButtonModeLabel()
         } //end if velocity > 0
     }//end ButtonVelocityEvent
+    
+    func setButtonModeLabel(){
+        var buttonModeLabel = "Manta Buttons\r"
+        if !programButton {
+            !shiftButton ? (buttonModeLabel += "8ve transpose"):(buttonModeLabel += "semi transpose")
+        } else {
+            !shiftButton ? (buttonModeLabel += "program change"):(buttonModeLabel += "bank change")
+        }
+        let appDelegate = NSApplication.sharedApplication().delegate as AppDelegate
+        appDelegate.mbuttonMode.stringValue = buttonModeLabel
+    }
 
     func Transpose(transposition: Int){
         if (highestNote + transposition) <= 127 && (lowestNote + transposition >= 0){
@@ -311,7 +323,7 @@ class swiftMantaObj : OcManta {
     }//end Transpose
 
     
-    func reCalcAll() {//is this still needed?
+    func reCalcAll() {
        
         userData.arbNotesLayout ?  userData.padNotes = userData.arbNotes : userData.setIsoNotes()
         // only recalc isonotes if using them.
@@ -325,7 +337,7 @@ class swiftMantaObj : OcManta {
     func findExtremeNotes(){
         lowestNote = minElement(userData.padNotes)
         highestNote = maxElement(userData.padNotes)
-        println("highestNote = \(highestNote) lowestNote = \(lowestNote)")
+        //println("highestNote = \(highestNote) lowestNote = \(lowestNote)")
     }
     
     func setPADled(colour: UserData.sLEDState, withValue pad:Int){// fuck all this wrapping shit

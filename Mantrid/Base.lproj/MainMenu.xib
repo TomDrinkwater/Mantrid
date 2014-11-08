@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6250"/>
@@ -21,6 +21,7 @@
                 <outlet property="ledModeMenu" destination="4XF-dB-jkA" id="Mvt-Bc-0o8"/>
                 <outlet property="ledSetButton" destination="d2d-Th-Rqp" id="VHW-12-nOc"/>
                 <outlet property="ledSetMenu" destination="c9x-CR-3Pw" id="uml-2w-RT8"/>
+                <outlet property="mbuttonMode" destination="LzS-yI-EJU" id="gp5-Mh-b88"/>
                 <outlet property="multiChanMenu" destination="oqS-z7-PlD" id="NgY-Jk-HgW"/>
                 <outlet property="noteSetButton" destination="Ax9-mK-tN3" id="YYa-uv-4qK"/>
                 <outlet property="noteSetLabel" destination="7Ej-eO-Vob" id="K7N-5q-sGG"/>
@@ -37,7 +38,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" topStrut="YES"/>
             <rect key="contentRect" x="71" y="598" width="425" height="511"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1600" height="1178"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1366" height="745"/>
             <view key="contentView" id="EiT-Mj-1SZ">
                 <rect key="frame" x="0.0" y="0.0" width="425" height="511"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -188,7 +189,7 @@
                                 </popUpButton>
                                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qmh-vH-495">
                                     <rect key="frame" x="4" y="4" width="132" height="32"/>
-                                    <buttonCell key="cell" type="push" title="load prefs" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="w5W-qA-PX3">
+                                    <buttonCell key="cell" type="push" title="load defaults" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="w5W-qA-PX3">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="system"/>
                                     </buttonCell>
@@ -198,7 +199,7 @@
                                 </button>
                                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sbe-gS-U68">
                                     <rect key="frame" x="4" y="33" width="132" height="32"/>
-                                    <buttonCell key="cell" type="push" title="save prefs" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="42b-H3-68M">
+                                    <buttonCell key="cell" type="push" title="save defaults" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="42b-H3-68M">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="system"/>
                                     </buttonCell>
@@ -206,6 +207,92 @@
                                         <action selector="saveButton:" target="Voe-Tx-rLC" id="DoT-Vg-hs7"/>
                                     </connections>
                                 </button>
+                                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rxx-HX-TXo">
+                                    <rect key="frame" x="4" y="96" width="132" height="32"/>
+                                    <buttonCell key="cell" type="push" title="save to file" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="C1u-kg-ZOm">
+                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" metaFont="system"/>
+                                    </buttonCell>
+                                    <connections>
+                                        <action selector="saveFile:" target="Voe-Tx-rLC" id="jxi-nl-uQx"/>
+                                    </connections>
+                                </button>
+                                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1bz-oV-1GN">
+                                    <rect key="frame" x="4" y="68" width="132" height="32"/>
+                                    <buttonCell key="cell" type="push" title="load from file" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="8Ao-Ll-Y1e">
+                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" metaFont="system"/>
+                                    </buttonCell>
+                                    <connections>
+                                        <action selector="loadFile:" target="Voe-Tx-rLC" id="TD0-rB-HgR"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                        </view>
+                        <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                        <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </box>
+                    <box autoresizesSubviews="NO" fixedFrame="YES" title="LEDs" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="wAq-PL-Hpa">
+                        <rect key="frame" x="8" y="8" width="261" height="238"/>
+                        <view key="contentView">
+                            <rect key="frame" x="1" y="1" width="259" height="222"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c9x-CR-3Pw">
+                                    <rect key="frame" x="16" y="153" width="141" height="26"/>
+                                    <popUpButtonCell key="cell" type="push" title="Set by Note" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="XSY-da-DXg" id="dVK-PL-I99">
+                                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" metaFont="menu"/>
+                                        <menu key="menu" id="g05-VK-EQd">
+                                            <items>
+                                                <menuItem title="Set by Note" state="on" id="XSY-da-DXg"/>
+                                                <menuItem title="Set by Pad" id="j9d-Bi-e5P">
+                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                </menuItem>
+                                            </items>
+                                        </menu>
+                                    </popUpButtonCell>
+                                    <connections>
+                                        <action selector="setLEDsArbMenu:" target="Voe-Tx-rLC" id="TgV-Cd-fEn"/>
+                                    </connections>
+                                </popUpButton>
+                                <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4XF-dB-jkA">
+                                    <rect key="frame" x="16" y="187" width="141" height="26"/>
+                                    <popUpButtonCell key="cell" type="push" title="Red &amp; Amber" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="kkv-S9-Edi" id="yfE-UW-K4K">
+                                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" metaFont="menu"/>
+                                        <menu key="menu" id="5p7-hp-UAV">
+                                            <items>
+                                                <menuItem title="LEDs Off" id="fIU-Kv-o3b"/>
+                                                <menuItem title="Red LEDs" id="7IB-ye-XIO">
+                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                </menuItem>
+                                                <menuItem title="Red &amp; Amber" state="on" id="kkv-S9-Edi"/>
+                                            </items>
+                                        </menu>
+                                    </popUpButtonCell>
+                                    <connections>
+                                        <action selector="ledModeMenu:" target="Voe-Tx-rLC" id="bk8-6s-XBF"/>
+                                    </connections>
+                                </popUpButton>
+                                <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d2d-Th-Rqp">
+                                    <rect key="frame" x="18" y="115" width="137" height="30"/>
+                                    <buttonCell key="cell" type="bevel" title="Set LEDs now" alternateTitle="Stop Setting" bezelStyle="regularSquare" image="bluegrey" imagePosition="overlaps" alignment="center" alternateImage="redbutton" imageScaling="axesIndependently" inset="2" id="oGd-A3-lai">
+                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                        <font key="font" metaFont="system"/>
+                                    </buttonCell>
+                                    <connections>
+                                        <action selector="setLEDbutton:" target="Voe-Tx-rLC" id="hjI-cs-z2v"/>
+                                    </connections>
+                                </button>
+                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0zi-k8-eXS">
+                                    <rect key="frame" x="16" y="7" width="204" height="100"/>
+                                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="LEDLabel" id="63m-Cs-V1s">
+                                        <font key="font" size="10" name="Monaco"/>
+                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
                             </subviews>
                         </view>
                         <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
@@ -454,8 +541,8 @@
                                     </connections>
                                 </button>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Ej-eO-Vob">
-                                    <rect key="frame" x="16" y="14" width="200" height="92"/>
-                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Note Layout" id="Pei-Ma-Kim">
+                                    <rect key="frame" x="16" y="14" width="235" height="92"/>
+                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Note Layout" id="Pei-Ma-Kim">
                                         <font key="font" size="10" name="Monaco"/>
                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -471,76 +558,36 @@
                                         <action selector="noteSetButton:" target="Voe-Tx-rLC" id="8zY-f7-xSY"/>
                                     </connections>
                                 </button>
-                            </subviews>
-                        </view>
-                        <color key="borderColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                        <color key="fillColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                    </box>
-                    <box autoresizesSubviews="NO" fixedFrame="YES" title="LEDs" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="wAq-PL-Hpa">
-                        <rect key="frame" x="8" y="8" width="261" height="238"/>
-                        <view key="contentView">
-                            <rect key="frame" x="1" y="1" width="259" height="222"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            <subviews>
-                                <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c9x-CR-3Pw">
-                                    <rect key="frame" x="16" y="153" width="141" height="26"/>
-                                    <popUpButtonCell key="cell" type="push" title="Set by Note" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="XSY-da-DXg" id="dVK-PL-I99">
+                                <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pxr-ZC-ZFz">
+                                    <rect key="frame" x="138" y="116" width="114" height="26"/>
+                                    <popUpButtonCell key="cell" type="push" title="notenums" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="ZqN-4Y-YFX" id="8xT-Gx-7oN">
                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="menu"/>
-                                        <menu key="menu" id="g05-VK-EQd">
+                                        <menu key="menu" id="G6p-aI-bex">
                                             <items>
-                                                <menuItem title="Set by Note" state="on" id="XSY-da-DXg"/>
-                                                <menuItem title="Set by Pad" id="j9d-Bi-e5P">
+                                                <menuItem title="notenums" state="on" id="ZqN-4Y-YFX">
                                                     <modifierMask key="keyEquivalentModifierMask"/>
                                                 </menuItem>
+                                                <menuItem title="notenames" id="EUV-0g-4nz"/>
                                             </items>
                                         </menu>
                                     </popUpButtonCell>
                                     <connections>
-                                        <action selector="setLEDsArbMenu:" target="Voe-Tx-rLC" id="TgV-Cd-fEn"/>
+                                        <action selector="noteDisplayTypeMenu:" target="Voe-Tx-rLC" id="PNn-fd-Cxt"/>
                                     </connections>
                                 </popUpButton>
-                                <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4XF-dB-jkA">
-                                    <rect key="frame" x="16" y="187" width="141" height="26"/>
-                                    <popUpButtonCell key="cell" type="push" title="Red &amp; Amber" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="kkv-S9-Edi" id="yfE-UW-K4K">
-                                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                        <font key="font" metaFont="menu"/>
-                                        <menu key="menu" id="5p7-hp-UAV">
-                                            <items>
-                                                <menuItem title="LEDs Off" id="fIU-Kv-o3b"/>
-                                                <menuItem title="Red LEDs" id="7IB-ye-XIO">
-                                                    <modifierMask key="keyEquivalentModifierMask"/>
-                                                </menuItem>
-                                                <menuItem title="Red &amp; Amber" state="on" id="kkv-S9-Edi"/>
-                                            </items>
-                                        </menu>
-                                    </popUpButtonCell>
-                                    <connections>
-                                        <action selector="ledModeMenu:" target="Voe-Tx-rLC" id="bk8-6s-XBF"/>
-                                    </connections>
-                                </popUpButton>
-                                <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d2d-Th-Rqp">
-                                    <rect key="frame" x="18" y="115" width="137" height="30"/>
-                                    <buttonCell key="cell" type="bevel" title="Set LEDs now" alternateTitle="Stop Setting" bezelStyle="regularSquare" image="bluegrey" imagePosition="overlaps" alignment="center" alternateImage="redbutton" imageScaling="axesIndependently" inset="2" id="oGd-A3-lai">
-                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                        <font key="font" metaFont="system"/>
-                                    </buttonCell>
-                                    <connections>
-                                        <action selector="setLEDbutton:" target="Voe-Tx-rLC" id="hjI-cs-z2v"/>
-                                    </connections>
-                                </button>
-                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0zi-k8-eXS">
-                                    <rect key="frame" x="16" y="7" width="204" height="100"/>
-                                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="LEDLabel" id="63m-Cs-V1s">
+                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LzS-yI-EJU">
+                                    <rect key="frame" x="143" y="148" width="100" height="35"/>
+                                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Button Mode" id="SHf-RH-tbG">
                                         <font key="font" size="10" name="Monaco"/>
-                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                 </textField>
                             </subviews>
                         </view>
-                        <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                        <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="borderColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                        <color key="fillColor" name="textColor" catalog="System" colorSpace="catalog"/>
                     </box>
                 </subviews>
             </view>

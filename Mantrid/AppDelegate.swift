@@ -39,6 +39,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @IBOutlet weak var ledLabel: NSTextField!
     
+    
+    @IBOutlet weak var mbuttonMode: NSTextField!
+    
     @IBAction func baseChannelMenu(sender: NSPopUpButton) {
         myManta.userData.baseChannel = sender.indexOfSelectedItem
     }
@@ -131,6 +134,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         ledLabel.stringValue = ledLabelText
     }
     
+    
+    @IBAction func saveFile(sender: NSButton) {
+        myManta.userData.exportFile()
+    }
+    
+    
+    @IBAction func loadFile(sender: NSButton) {
+        myManta.userData.importFile()
+        
+    }
+    
+    
     @IBAction func saveButton(sender: NSButton) {
         myManta.userData.saveDefaults()
     }
@@ -170,10 +185,26 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @IBOutlet weak var noteSetButton: NSButton!
     
+    
+    @IBAction func noteDisplayTypeMenu(sender: NSPopUpButton) {
+        var item = sender.indexOfSelectedItem
+        if item == 0 {
+            myManta.userData.displayNoteNums = true
+        } else {
+            myManta.userData.displayNoteNums = false
+        }
+        noteSetLabeler()
+    }
+    
+    
     @IBOutlet weak var noteSetLabel: NSTextField!
     
     func noteSetLabeler() {
-        noteSetLabel.stringValue = myManta.userData.makeNoteLabelText()
+        if myManta.userData.displayNoteNums {
+            noteSetLabel.stringValue = myManta.userData.makeNoteLabelText()
+        } else {
+            noteSetLabel.stringValue = myManta.userData.makePitchClassLabelText()
+        }
     }
     
     @IBAction func pressureTypeMenu(sender: NSPopUpButton) {
@@ -199,7 +230,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @IBAction func multiChanMenu(sender: NSPopUpButton) {
         var item = sender.indexOfSelectedItem
-        myManta.userData.numMultiChannels = item
+        myManta.userData.numMultiChannels = item+1//channel 1 is 0 BUT menu starts at 2
     }
     
     @IBAction func fastButton(sender: NSButton) {
@@ -287,15 +318,27 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         menu.addItem(menuQuitItem)
 
         self.window.orderOut(self)//hide window on start
+        
+        println("completed awakeFromNib")
     }
     
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         println("myManta object looks like \(myManta)")
-        
-        connect()
         multiChanMenu.enabled = false
-        setLedLabel()
-        noteSetLabeler()
+        let defaults = NSUserDefaults.standardUserDefaults()
+        //defaults.synchronize()
+        connect()
+       // myManta.reCalcAll()
+        let defaultsExist = myManta.userData.testDefaults()
+        if defaultsExist {// see if defaults exist yet
+            myManta.userData.loadDefaults() //load them if they do
+        } else {
+            myManta.userData.saveDefaults() // create them if they don't
+            println("creating defaults")
+
+        }
+        setViewFromModel()
+        myManta.setButtonModeLabel()
     }
     
     func connect(){
@@ -329,8 +372,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             //menuWindowItem.title = "Show"//set title to opposite
     }
 
-    func quit(sender: AnyObject){//WHY DOESN'T THIS WORK!!!
-        
+    func quit(sender: AnyObject){
         let hasquit = myManta.onQuit()
         
         println("onquit has finished \(hasquit)")
